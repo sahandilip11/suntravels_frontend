@@ -1,0 +1,77 @@
+<div class="form-wrapper">
+  <!-- Topic Header -->
+  <h1 class="form-title">Contract Details form</h1>
+
+  <!-- Form -->
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <div class="contract-add-form">
+        <!-- Hotel Name Input -->
+        <div class="input-div">
+          <label>Hotel Name:</label>
+          <input type="text" [(ngModel)]="contract.hotelName" name="hotelName" required />
+        </div>
+
+        <!-- Markup Rate Input -->
+        <div class="input-div">
+          <label>Markup Rate:</label>
+          <input type="number" [(ngModel)]="contract.markupRate" name="markupRate" required />
+        </div>
+
+        <!-- Date Inputs -->
+        <div class="date-inputs">
+          <div id="valid-form">
+            <label>Valid From:</label>
+            <div class="single-date-input">
+              <input type="date" [(ngModel)]="contract.validFrom" name="validFrom" required />
+            </div>
+          </div>
+          <div id="valid-to">
+            <label>Valid To:</label>
+            <div class="single-date-input">
+              <input type="date" [(ngModel)]="contract.validTo" name="validTo" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Blocks -->
+        <div class="room-block" *ngFor="let room of contract.roomTypeList; let i = index">
+          <div>
+            <h3 class="room-number-topic">Room Type {{ i + 1 }}</h3>
+          </div>
+          <div class="room-inputs">
+            <div>
+              <label>Room Type Name:</label>
+              <input type="text" [(ngModel)]="room.typeName" name="roomTypeName-{{ i }}" required />
+            </div>
+            <div>
+              <label>Max Adults:</label>
+              <input type="number" [(ngModel)]="room.maxNoOfAdults" name="maxNoAdults-{{ i }}" required />
+            </div>
+            <div>
+              <label>No of Rooms:</label>
+              <input type="number" [(ngModel)]="room.noOfRooms" name="noOfRooms-{{ i }}" required />
+            </div>
+            <div>
+              <label>Per Person Price:</label>
+              <input type="number" [(ngModel)]="room.perPersonPrice" name="perPersonPrice-{{ i }}" required />
+            </div>
+            <div class="btn-cancel-div">
+              <button (click)="closePopup()" class="btn-cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="buttons-div">
+          <div class="add-room-div">
+            <button class="add-room-button" (click)="addRoom()" type="button">Add Room Type</button>
+          </div>
+          <div class="submit-div">
+            <button submittype="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

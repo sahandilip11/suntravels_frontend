@@ -1,0 +1,21 @@
+/* General footer styling */
+.footer {
+    background-color: #3e54fd; /* Footer background color */
+    color: white; /* Footer text color */
+    text-align: center; /* Center the text */
+    position:absolute; /* Stick the footer to the bottom */
+
+    width: 100%; /* Make the footer span the full width */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-size: 0.9rem; /* Slightly smaller font size for the footer */
+    /* display: flex; */
+  }
+
+.body {
+    position: relative;
+
+} 
+  
+  
+  
+  

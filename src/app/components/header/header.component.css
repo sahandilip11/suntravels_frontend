@@ -1,0 +1,96 @@
+/* General styling for the header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align title to the left and buttons/logo to the right */
+  padding: 0.3rem 1rem;
+  background-color: #3e54fd; /* Header background color */
+  color: white; /* White text color */
+  border-radius: 10px; /* Add a little curve to the header corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 0.5rem; /* Add margin around the header */
+}
+
+/* Left section: Title */
+.header-left {
+  flex: 1; /* Allow the title to take available space on the left */
+  text-align: left;
+   
+  color: #ffffff;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  /* font-weight: bold; */
+  font-family:cursive;
+}
+
+/* Right section: Buttons and Logo */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Add spacing between buttons and the logo */
+}
+
+/* Home button styling */
+.header-right .btn-home img {
+  height: 25px; /* Match the height of the company logo */
+  width: 25px; /* Match the width for circular appearance */
+  border-radius: 100%; /* Make the home image circular */
+  object-fit: cover; /* Ensure the image fits nicely */
+  cursor: pointer; /* Make it clickable */ /* Add border around the home image */
+  transition: transform 0.3s ease; /* Add slight animation effect */
+}
+
+.header-right .btn-home img:hover {
+  transform: scale(1.1); /* Slight zoom-in effect on hover */
+}
+
+/* Logo styling */
+.header-right .header-logo img {
+  height: 25px; /* Adjust logo height */
+  width: 25px; /* Keep width the same to make it circular */
+  border-radius: 50%; /* Make the logo circular */
+  object-fit: cover; /* Ensure the image fits nicely */
+  cursor: pointer; /* Make it clickable */
+  border: 2px sol
+  id white; /* Add border around the logo */
+}
+
+/* Back button styling */
+.header-right .btn-back img {
+  height: 25px; /* Match the height of the home button */
+  width: 25px; /* Match the width for circular appearance */
+  border-radius: 100%; /* Make the back image circular */
+  object-fit: cover; /* Ensure the image fits nicely */
+  cursor: pointer; /* Make it clickable */
+  transition: transform 0.3s ease; /* Add slight animation effect */
+}
+
+.header-right .btn-back img:hover {
+  transform: scale(1.1); /* Slight zoom-in effect on hover */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start;
+  }
+
+  .header-title {
+      margin-bottom: 1rem; /* Add spacing below title */
+      text-align: center;
+  }
+
+  .header-right {
+      width: 100%; /* Full width for smaller screens */
+      justify-content: space-between; /* Spread buttons and logo */
+  }
+
+  .header-right .btn-home,
+  .header-right .btn-add-hotel {
+      width: auto; /* Allow buttons to adjust to their content */
+  }
+}

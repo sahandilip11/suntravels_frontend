@@ -1,0 +1,36 @@
+<header class="header">
+  <!-- Left side: Title -->
+  <div class="header-left">
+    <span class="header-title">Suntravels Room Reservation System</span>
+  </div>
+
+  <div class="header-right">
+
+      <!-- Back button (conditionally displayed) -->
+      <div class="btn-back" *ngIf="showBackButton">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/271/271220.png"
+          alt="Back Button"
+          (click)="goBack()"
+        />
+      </div>
+    <!-- Home button with small circular image -->
+    <div class="btn-home">
+      <img
+        src="https://icons.veryicon.com/png/o/miscellaneous/rongyiguang/navigation-home-3.png"
+        alt="Home Logo"
+        routerLink="/"
+      />
+    </div>
+
+    <!-- Company logo -->
+    <div class="header-logo">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ73cCn6uZYqEgKutMhhlNdBBsSZiv-_7iWzA&s.jpg"
+        alt="Agent Logo"
+        routerLink="/"
+      />
+    </div>
+  </div>
+
+</header>

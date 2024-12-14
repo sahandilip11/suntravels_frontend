@@ -1,0 +1,259 @@
+/* Form wrapper */
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: cursive;
+}
+
+/* Topic title */
+.form-title {
+  font-size: 2rem;
+  color: #3e54fd;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: cursive;
+}
+
+/* Form container */
+.form-container {
+  width: 400px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin: 10px;
+  background: linear-gradient(135deg, rgba(210, 224, 255, 0.8), rgba(187, 210, 213, 0.8));
+  font-family: cursive;
+}
+
+.input-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-family: cursive;
+}
+
+.input-div label {
+  flex: 1;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+  font-family: cursive;
+}
+
+.input-div input {
+  flex: 2;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  font-family: cursive;
+}
+
+/* Room block styling */
+.room-block {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: cursive;
+}
+
+.room-number-topic {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #3e54fd;
+  margin-bottom: 10px;
+  font-family: cursive;
+}
+
+.room-inputs {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-family: cursive;
+}
+
+.room-inputs label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+  font-family: cursive;
+}
+
+.room-inputs input {
+  width: 85%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  font-family: cursive;
+}
+
+/* Buttons */
+.buttons-div {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-family: cursive;
+}
+
+.add-room-button,
+.submit-div button {
+  padding: 10px 20px;
+  background-color: #3e54fd;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: cursive;
+}
+
+/* Results wrapper */
+.results-wrapper {
+  margin: 20px auto;
+  width: 90%;
+  font-family: cursive;
+}
+
+.results-title {
+  font-size: 1.8rem;
+  color: #3e54fd;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: cursive;
+}
+
+/* Card */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: cursive;
+}
+
+.card h3 {
+  margin-top: 0;
+  font-family: cursive;
+}
+
+.card ul {
+  padding-left: 20px;
+  font-family: cursive;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.loading-state {
+  color: #555;
+  text-align: center;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-family: cursive;
+}
+
+.btn-cancel {
+  padding: 10px 15px;
+  background-color: #68696d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: cursive;
+}
+
+/* Results wrapper */
+.results-wrapper {
+  margin: 20px auto;
+  width: 90%;
+  font-family: cursive;
+}
+
+.results-title {
+  font-size: 1.8rem;
+  color: #3e54fd;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: cursive;
+}
+
+/* Outer table styling */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-family: cursive;
+}
+
+.results-table thead th {
+  background-color: #3e54fd;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-family: cursive;
+}
+
+.results-table tbody td {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  color: #333;
+  font-family: cursive;
+}
+
+.results-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+  font-family: cursive;
+}
+
+.results-table tbody tr:hover {
+  background-color: #f1f1f1;
+  font-family: cursive;
+}
+
+/* Inner Table */
+.inner-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: cursive;
+}
+
+.inner-table thead th {
+  background-color: #f3f4f6;
+  color: #3e54fd;
+  padding: 5px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-family: cursive;
+}
+
+.inner-table tbody td {
+  padding: 5px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #555;
+  font-family: cursive;
+}

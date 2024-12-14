@@ -1,0 +1,229 @@
+/* Center Title */
+.page-title {
+  text-align: left;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3e54fd;
+  /* margin-bottom: 20px; */
+  margin-left: 30px;
+  font-family: cursive;
+}
+
+/* Card Details - Row Alignment */
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* Spacing between details */
+  margin-bottom: 20px;
+  font-family: cursive;
+}
+
+.card-details p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+  font-family: cursive;
+}
+
+/* Card Container */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+  gap: 20px; /* Space between cards */
+  padding: 10px;
+  font-family: cursive;
+}
+
+/* Card Styles */
+.contract-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: cursive;
+}
+
+/* Hover Effect */
+.contract-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  font-family: cursive;
+}
+
+.contract-card.valid {
+  background: linear-gradient(135deg, #ffffff 0%, #b8dfc2 100%); /* Darker green gradient with white */
+  border: 1px solid #28a745; /* Darker green border */
+  font-family: cursive;
+}
+
+.contract-card.expired {
+  background: linear-gradient(135deg, #ffffff 0%, #f5b7b1 100%); /* Darker red gradient with white */
+  border: 1px solid #d63031; /* Darker red border */
+  font-family: cursive;
+}
+
+.contract-card.upcoming {
+  background: linear-gradient(135deg, #ffffff 0%, #ffe199 100%); /* Darker yellow gradient with white */
+  border: 1px solid #e1b12c; /* Darker yellow border */
+  font-family: cursive;
+}
+
+
+
+
+
+/* Header Styles */
+.card-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-family: cursive;
+}
+
+.hotel-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3e54fd;
+  margin: 0;
+  text-align: center;
+  font-family: cursive;
+}
+
+/* Room Types Table */
+.room-types-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: cursive;
+  border-color: #000000;
+  border-radius: 2px;
+}
+
+.room-types-table th {
+  background-color: #3e54fd;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.room-types-table td {
+  padding: 10px;
+  border: 0.5px solid #000000;
+  color: #333;
+  font-family: cursive;
+}
+
+.room-types-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+  font-family: cursive;
+}
+
+.room-types-table tbody tr:hover {
+  background-color: #f1f1f1;
+  font-family: cursive;
+}
+
+/* Card Actions */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  font-family: cursive;
+}
+
+.edit-button {
+  background-color: #f1c40f;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: cursive;
+}
+
+.edit-button:hover {
+  background-color: #d4ac0d;
+  font-family: cursive;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: cursive;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+  font-family: cursive;
+}
+
+/* Top Container */
+.top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between title and search dropdown */
+  padding: 10px; /* Reduced padding inside the container */
+  margin: 10px auto; /* Adjusted margin for less spacing outside */
+  width: 96%; /* Reduced width to make it smaller */
+  border: 1px solid #ffffff; /* Blue border around the container */
+  border-radius: 10px; /* Smooth rounded corners */
+  background-color: rgba(62, 84, 253, 0.1); /* Light blue background */
+  font-family: cursive;
+}
+
+
+/* Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between label and dropdown */
+  font-family: cursive;
+  padding-right: 30px;
+}
+
+/* Search Label */
+.search-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+  font-family: cursive;
+}
+
+/* Search Dropdown */
+.search-dropdown {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  outline: none;
+  font-family: cursive;
+}
+
+.search-dropdown:focus {
+  border-color: #3e54fd; /* Add a blue border on focus */
+  box-shadow: 0 0 4px #3e54fd;
+  font-family: cursive;
+}
+
+.search-dropdown option {
+  font-size: 1rem;
+  color: #333;
+  font-family: cursive;
+}

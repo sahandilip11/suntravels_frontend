@@ -1,0 +1,92 @@
+/* Container styling */
+.button-container {
+  display: grid; /* Use grid for better alignment and spacing */
+  grid-template-columns: repeat(3, 1fr); /* Always three columns */
+  gap: 1.5rem; /* Space between cards */
+  padding: 1rem; /* Add padding around the container */
+}
+
+/* Card styling */
+.card {
+  position: relative; /* Allow positioning for the gradient overlay */
+  background: linear-gradient(135deg, #d2e0ff, #bbd2d5); /* Gradient background */
+  border: 1px solid #bbd2d5; /* Subtle border for better visibility */
+  border-radius: 12px; /* Smooth, modern rounded corners */
+  padding: 3rem; /* Space inside the card */
+  text-align: center; /* Center align text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  min-height: 350px; /* Adjust as needed */
+
+  /* Flexbox for centering */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column; /* Ensure content stacks vertically if needed */
+  overflow: hidden; /* Prevent gradient overlay from spilling out */
+}
+
+/* Optional: Gradient overlay for image */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(210, 224, 255, 0.8), rgba(187, 210, 213, 0.8)); /* Semi-transparent gradient */
+  z-index: 1; /* Place above the image */
+  pointer-events: none; /* Allow interaction with the content below */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  z-index: 0; /* Place below the gradient */
+  object-fit: cover; /* Ensure the image scales properly */
+}
+
+/* Title styling */
+.card h3 {
+  font-size: 3rem; /* Slightly larger font size */
+  color: #3e54fd; /* Vibrant color for the title */
+  margin-bottom: 0.5rem; /* More space below the title */
+  font-family: cursive; /* Modern cursive font */
+  font-style: bold;
+  z-index: 2; /* Place above the overlay */
+}
+
+/* Description styling */
+.card p {
+  font-size: 1.25rem; /* Larger and more readable text */
+  color: #555555; /* Neutral gray for descriptions */
+  line-height: 1.5; /* Improve text readability */
+  font-style: italic;
+  z-index: 2; /* Place above the overlay */
+}
+
+/* Hover effect */
+.card:hover {
+  transform: scale(1.05); /* Subtle zoom-in effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow for emphasis */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .button-container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    gap: 1.5rem; /* Adjust spacing */
+  }
+}
+
+@media (max-width: 768px) {
+  .button-container {
+    grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    gap: 1rem; /* Adjust spacing */
+  }
+
+  .card {
+    width: 100%; /* Full width on small screens */
+  }
+}

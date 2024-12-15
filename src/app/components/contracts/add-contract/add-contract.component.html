@@ -29,48 +29,58 @@
             [(ngModel)]="contract.markupRate"
             name="markupRate"
             required
-            min="0"
+            min="1"
             #markupRate="ngModel"
           />
           <div class="error" *ngIf="markupRate.invalid && markupRate.touched">
             <p *ngIf="markupRate.errors?.['required']">Markup Rate is required.</p>
-            <p *ngIf="markupRate.errors?.['min']">Markup Rate must be a positive number.</p>
+            <p *ngIf="markupRate.errors?.['min']">Markup Rate can't be zero.</p>
           </div>
         </div>
 
-        <!-- Date Inputs -->
-        <div class="date-inputs">
-          <div id="valid-form">
-            <label>Valid From:</label>
-            <div class="single-date-input">
-              <input
-                type="date"
-                [(ngModel)]="contract.validFrom"
-                name="validFrom"
-                required
-                #validFrom="ngModel"
-              />
-              <div class="error" *ngIf="validFrom.invalid && validFrom.touched">
-                <p *ngIf="validFrom.errors?.['required']">Valid From is required.</p>
-              </div>
-            </div>
-          </div>
-          <div id="valid-to">
-            <label>Valid To:</label>
-            <div class="single-date-input">
-              <input
-                type="date"
-                [(ngModel)]="contract.validTo"
-                name="validTo"
-                required
-                #validTo="ngModel"
-              />
-              <div class="error" *ngIf="validTo.invalid && validTo.touched">
-                <p *ngIf="validTo.errors?.['required']">Valid To is required.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- Date Inputs -->
+<div class="date-inputs">
+  <!-- Valid From -->
+  <div id="valid-form">
+    <label>Valid From:</label>
+    <div class="single-date-input">
+      <input
+        type="date"
+        [(ngModel)]="contract.validFrom"
+        name="validFrom"
+        required
+        [min]="today" 
+        #validFrom="ngModel"
+      />
+      <div class="error" *ngIf="validFrom.invalid && validFrom.touched">
+        <p *ngIf="validFrom.errors?.['required']">Valid From is required.</p>
+        <p *ngIf="validFrom.errors?.['min']">Valid From cannot be a past date.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Valid To -->
+  <div id="valid-to">
+    <label>Valid To:</label>
+    <div class="single-date-input">
+      <input
+        type="date"
+        [(ngModel)]="contract.validTo"
+        name="validTo"
+        required
+        [min]="contract.validFrom"
+        #validTo="ngModel"
+      />
+      <div class="error" *ngIf="validTo.invalid && validTo.touched">
+        <p *ngIf="validTo.errors?.['required']">Valid To is required.</p>
+        <p *ngIf="validTo.errors?.['min']">
+          Valid To must be after or on {{ contract.validFrom }}.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         <!-- Room Blocks -->
         <div
@@ -130,7 +140,7 @@
               </div>
             </div>
             <div>
-              <label>Per Person Price:</label>
+              <label>Per Person Price($):</label>
               <input
                 type="number"
                 [(ngModel)]="room.perPersonPrice"
@@ -164,10 +174,12 @@
               class="add-room-button"
               (click)="addRoom()"
               type="button"
+              [disabled]="!isFormReady()" 
             >
-              Add Room Type
+              Add Room
             </button>
           </div>
+
           <div class="submit-div">
             <button
               type="submit"

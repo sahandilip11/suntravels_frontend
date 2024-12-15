@@ -4,6 +4,7 @@
   <form (ngSubmit)="onSubmit()">
     <div class="form-container">
       <!-- Check-in Date Input -->
+  <!-- Check-in Date Input -->
       <div class="input-div">
         <label>Check-in Date:</label>
         <input
@@ -11,10 +12,10 @@
           [(ngModel)]="searchRequest.checkInDate"
           name="checkInDate"
           required
+          [min]="today" 
         />
       </div>
 
-      <!-- Number of Nights Input -->
       <div class="input-div">
         <label>Number of Nights:</label>
         <input
@@ -22,8 +23,15 @@
           [(ngModel)]="searchRequest.numberOfNights"
           name="numberOfNights"
           required
+          min="1" 
+          #numberOfNights="ngModel"
         />
+        <div class="error" *ngIf="numberOfNights.invalid && numberOfNights.touched">
+          <p *ngIf="numberOfNights.errors?.['required']">Number of Nights is required.</p>
+          <p *ngIf="numberOfNights.errors?.['min']">Number of Nights must be 1 or greater.</p>
+        </div>
       </div>
+      
 
 <!-- Room Requests -->
 <div class="room-block" *ngFor="let room of searchRequest.roomRequests; let i = index">
@@ -37,7 +45,13 @@
         [(ngModel)]="room.numberOfAdults"
         name="numberOfAdults-{{ i }}"
         required
+        min="1"
+        #numberOfAdults="ngModel" 
       />
+      <div class="error-message" *ngIf="numberOfAdults.invalid && numberOfAdults.touched">
+        <p *ngIf="numberOfAdults.errors?.['required']">Number of Adults is required.</p>
+        <p *ngIf="numberOfAdults.errors?.['min']">Must be at least 1 adult.</p>
+      </div>
     </div>
     <div class="single-room-input">
       <label>Number of Rooms:</label>
@@ -47,7 +61,13 @@
         [(ngModel)]="room.numberOfRooms"
         name="numberOfRooms-{{ i }}"
         required
+        min="1"
+        #numberOfRooms="ngModel" 
       />
+      <div class="error-message" *ngIf="numberOfRooms.invalid && numberOfRooms.touched">
+        <p *ngIf="numberOfRooms.errors?.['required']">Number of Rooms is required.</p>
+        <p *ngIf="numberOfRooms.errors?.['min']">Must be at least 1 room.</p>
+      </div>
     </div>
   </div>
   <div class="btn-cancel-div">
@@ -59,7 +79,14 @@
       <!-- Buttons -->
       <div class="buttons-div">
         <div class="add-room-div">
-          <button class="add-room-button" (click)="addRoomRequest()" type="button">Add Room Request</button>
+          <button
+            class="add-room-button"
+            (click)="addRoomRequest()"
+            type="button"
+            [disabled]="!isRoomRequestValid()" 
+          >
+            Add Room Request
+          </button>
         </div>
         <div class="submit-div">
           <button type="submit">Search</button>
@@ -84,7 +111,7 @@
       <tr>
         <th>Hotel Name</th>
         <th>Status</th>
-        <th>Total Price</th>
+        <th>Total Price($)</th>
         <th>Room Types</th>
       </tr>
     </thead>

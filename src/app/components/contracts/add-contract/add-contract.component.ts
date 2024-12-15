@@ -27,10 +27,30 @@ export class AddContractComponent {
     roomTypeList: [] as RoomType[],
   };
 
+  today: string; // Define the `today` variable
+
   isPopupOpen = false; // State to control room block popup visibility
   currentRoomIndex: number | null = null; // Track the room block being edited
 
-  constructor(private contractsService: ContractsService, private router: Router) {} // Inject Router
+  constructor(
+    private contractsService: ContractsService,
+    private router: Router
+  ) {
+    // Initialize `today` to the current date in YYYY-MM-DD format
+    const currentDate = new Date();
+    this.today = currentDate.toISOString().split('T')[0];
+  }
+
+  // Check if the required fields are filled and valid
+  isFormReady(): boolean {
+    return (
+      this.contract.hotelName.trim() !== '' && // Ensure hotel name is not empty
+      this.contract.markupRate > 0 &&          // Ensure markup rate is valid
+      this.contract.validFrom !== '' &&       // Ensure validFrom is filled
+      this.contract.validTo !== '' &&         // Ensure validTo is filled
+      new Date(this.contract.validTo) > new Date(this.contract.validFrom) // Ensure validTo > validFrom
+    );
+  }
 
   addRoom() {
     const newRoom: RoomType = {
@@ -53,11 +73,29 @@ export class AddContractComponent {
   }
 
   onSubmit() {
+    // Check for room type
     if (this.contract.roomTypeList.length === 0) {
       alert('At least one room type is required.');
       return;
     }
-
+  
+    // Date validation
+    const validFromDate = new Date(this.contract.validFrom);
+    const validToDate = new Date(this.contract.validTo);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time for accurate comparison
+  
+    if (validFromDate < today) {
+      alert('Valid From date cannot be in the past.');
+      return;
+    }
+  
+    if (validToDate <= validFromDate) {
+      alert('Valid To date must be later than Valid From date.');
+      return;
+    }
+  
+    // Submit the form if all validations pass
     this.contractsService.addContract(this.contract).subscribe({
       next: (response) => {
         console.log('Contract added:', response);
@@ -68,4 +106,5 @@ export class AddContractComponent {
       },
     });
   }
+  
 }

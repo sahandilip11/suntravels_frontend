@@ -102,6 +102,16 @@
   font-family: cursive;
 }
 
+/* Error messages styling */
+.error-message {
+  color: red; /* Red color for error messages */
+  font-style: italic; /* Italic font for error messages */
+  font-size: 0.9rem; /* Adjust font size for better readability */
+  margin-top: 4px; /* Add some spacing between input and message */
+  font-family: cursive; /* Ensure consistent font across the application */
+}
+
+
 /* Buttons */
 .buttons-div {
   display: flex;
@@ -159,8 +169,10 @@
 }
 
 .error {
-  color: red;
-  font-weight: bold;
+  color: red; /* Red color for error messages */
+  font-style: italic; /* Italic font for error messages */
+  font-size: 0.9rem; /* Adjust font size for better readability */
+  margin-top: 4px; /* Add some spacing between input and message */
   font-family: cursive;
 }
 

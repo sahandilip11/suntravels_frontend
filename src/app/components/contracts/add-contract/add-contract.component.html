@@ -1,21 +1,41 @@
 <div class="form-wrapper">
   <!-- Topic Header -->
-  <h1 class="form-title">Contract Details form</h1>
+  <h1 class="form-title">Contract Details Form</h1>
 
   <!-- Form -->
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" #contractForm="ngForm" novalidate>
     <div class="form-container">
       <div class="contract-add-form">
         <!-- Hotel Name Input -->
         <div class="input-div">
           <label>Hotel Name:</label>
-          <input type="text" [(ngModel)]="contract.hotelName" name="hotelName" required />
+          <input
+            type="text"
+            [(ngModel)]="contract.hotelName"
+            name="hotelName"
+            required
+            #hotelName="ngModel"
+          />
+          <div class="error" *ngIf="hotelName.invalid && hotelName.touched">
+            <p *ngIf="hotelName.errors?.['required']">Hotel Name is required.</p>
+          </div>
         </div>
 
         <!-- Markup Rate Input -->
         <div class="input-div">
           <label>Markup Rate:</label>
-          <input type="number" [(ngModel)]="contract.markupRate" name="markupRate" required />
+          <input
+            type="number"
+            [(ngModel)]="contract.markupRate"
+            name="markupRate"
+            required
+            min="0"
+            #markupRate="ngModel"
+          />
+          <div class="error" *ngIf="markupRate.invalid && markupRate.touched">
+            <p *ngIf="markupRate.errors?.['required']">Markup Rate is required.</p>
+            <p *ngIf="markupRate.errors?.['min']">Markup Rate must be a positive number.</p>
+          </div>
         </div>
 
         <!-- Date Inputs -->
@@ -23,38 +43,113 @@
           <div id="valid-form">
             <label>Valid From:</label>
             <div class="single-date-input">
-              <input type="date" [(ngModel)]="contract.validFrom" name="validFrom" required />
+              <input
+                type="date"
+                [(ngModel)]="contract.validFrom"
+                name="validFrom"
+                required
+                #validFrom="ngModel"
+              />
+              <div class="error" *ngIf="validFrom.invalid && validFrom.touched">
+                <p *ngIf="validFrom.errors?.['required']">Valid From is required.</p>
+              </div>
             </div>
           </div>
           <div id="valid-to">
             <label>Valid To:</label>
             <div class="single-date-input">
-              <input type="date" [(ngModel)]="contract.validTo" name="validTo" required />
+              <input
+                type="date"
+                [(ngModel)]="contract.validTo"
+                name="validTo"
+                required
+                #validTo="ngModel"
+              />
+              <div class="error" *ngIf="validTo.invalid && validTo.touched">
+                <p *ngIf="validTo.errors?.['required']">Valid To is required.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Room Blocks -->
-        <div class="room-block" *ngFor="let room of contract.roomTypeList; let i = index">
+        <div
+          class="room-block"
+          *ngFor="let room of contract.roomTypeList; let i = index"
+        >
           <div>
             <h3 class="room-number-topic">Room Type {{ i + 1 }}</h3>
           </div>
           <div class="room-inputs">
             <div>
               <label>Room Type Name:</label>
-              <input type="text" [(ngModel)]="room.typeName" name="roomTypeName-{{ i }}" required />
+              <input
+                type="text"
+                [(ngModel)]="room.typeName"
+                name="roomTypeName-{{ i }}"
+                required
+                #roomTypeName="ngModel"
+              />
+              <div
+                class="error"
+                *ngIf="roomTypeName.invalid && roomTypeName.touched"
+              >
+                <p *ngIf="roomTypeName.errors?.['required']">
+                  Room Type Name is required.
+                </p>
+              </div>
             </div>
             <div>
               <label>Max Adults:</label>
-              <input type="number" [(ngModel)]="room.maxNoOfAdults" name="maxNoAdults-{{ i }}" required />
+              <input
+                type="number"
+                [(ngModel)]="room.maxNoOfAdults"
+                name="maxNoAdults-{{ i }}"
+                required
+                min="1"
+                #maxNoAdults="ngModel"
+              />
+              <div class="error" *ngIf="maxNoAdults.invalid && maxNoAdults.touched">
+                <p *ngIf="maxNoAdults.errors?.['required']">Max Adults is required.</p>
+                <p *ngIf="maxNoAdults.errors?.['min']">Must be at least 1.</p>
+              </div>
             </div>
             <div>
               <label>No of Rooms:</label>
-              <input type="number" [(ngModel)]="room.noOfRooms" name="noOfRooms-{{ i }}" required />
+              <input
+                type="number"
+                [(ngModel)]="room.noOfRooms"
+                name="noOfRooms-{{ i }}"
+                required
+                min="1"
+                #noOfRooms="ngModel"
+              />
+              <div class="error" *ngIf="noOfRooms.invalid && noOfRooms.touched">
+                <p *ngIf="noOfRooms.errors?.['required']">Number of Rooms is required.</p>
+                <p *ngIf="noOfRooms.errors?.['min']">Must be at least 1.</p>
+              </div>
             </div>
             <div>
               <label>Per Person Price:</label>
-              <input type="number" [(ngModel)]="room.perPersonPrice" name="perPersonPrice-{{ i }}" required />
+              <input
+                type="number"
+                [(ngModel)]="room.perPersonPrice"
+                name="perPersonPrice-{{ i }}"
+                required
+                min="0"
+                #perPersonPrice="ngModel"
+              />
+              <div
+                class="error"
+                *ngIf="perPersonPrice.invalid && perPersonPrice.touched"
+              >
+                <p *ngIf="perPersonPrice.errors?.['required']">
+                  Per Person Price is required.
+                </p>
+                <p *ngIf="perPersonPrice.errors?.['min']">
+                  Price must be a positive number.
+                </p>
+              </div>
             </div>
             <div class="btn-cancel-div">
               <button (click)="closePopup()" class="btn-cancel">Cancel</button>
@@ -65,10 +160,21 @@
         <!-- Buttons Section -->
         <div class="buttons-div">
           <div class="add-room-div">
-            <button class="add-room-button" (click)="addRoom()" type="button">Add Room Type</button>
+            <button
+              class="add-room-button"
+              (click)="addRoom()"
+              type="button"
+            >
+              Add Room Type
+            </button>
           </div>
           <div class="submit-div">
-            <button submittype="submit">Submit</button>
+            <button
+              type="submit"
+              [disabled]="contractForm.invalid"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>

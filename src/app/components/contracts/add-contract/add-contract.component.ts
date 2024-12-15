@@ -53,9 +53,19 @@ export class AddContractComponent {
   }
 
   onSubmit() {
-    this.contractsService.addContract(this.contract).subscribe((response) => {
-      console.log('Contract added:', response);
-      this.router.navigate(['']); // Navigate to HomeComponent after successful submission
+    if (this.contract.roomTypeList.length === 0) {
+      alert('At least one room type is required.');
+      return;
+    }
+
+    this.contractsService.addContract(this.contract).subscribe({
+      next: (response) => {
+        console.log('Contract added:', response);
+        this.router.navigate(['']); // Navigate to HomeComponent after successful submission
+      },
+      error: (err) => {
+        console.error('Failed to add contract:', err);
+      },
     });
   }
 }

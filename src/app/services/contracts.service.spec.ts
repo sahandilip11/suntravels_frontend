@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
 import { ContractsService } from './contracts.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ContractsService', () => {
   let service: ContractsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule], // Mock HttpClient
+    });
     service = TestBed.inject(ContractsService);
   });
 
@@ -14,3 +16,4 @@ describe('ContractsService', () => {
     expect(service).toBeTruthy();
   });
 });
+

@@ -7,6 +7,8 @@
   font-family: cursive; /* Apply cursive font globally to the form */
 }
 
+
+
 /* Topic title */
 .form-title {
   font-size: 2rem;
@@ -215,8 +217,16 @@
   font-family: cursive; /* Add cursive font */
 }
 
-.btn-cancel-div {
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
+
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -233,4 +243,15 @@
     flex-direction: column;
     gap: 10px;
   }
+
+  .error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
 }

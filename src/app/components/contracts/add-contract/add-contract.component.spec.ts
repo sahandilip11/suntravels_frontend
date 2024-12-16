@@ -80,84 +80,51 @@ describe('AddContractComponent', () => {
     expect(contractsServiceSpy.addContract).not.toHaveBeenCalled();
   });
 
-  // it('should mark hotelName as invalid if empty', () => {
-  //   const fixture = TestBed.createComponent(AddContractComponent);
-  //   const component = fixture.componentInstance;
-  //   const compiled = fixture.nativeElement as HTMLElement;
+  it('should enable the submit button if form is valid', () => {
+    const fixture = TestBed.createComponent(AddContractComponent);
+    const component = fixture.componentInstance;
+    const compiled = fixture.nativeElement as HTMLElement;
   
-  //   const hotelNameInput = compiled.querySelector('input[name="hotelName"]') as HTMLInputElement;
-  //   hotelNameInput.value = ''; // Invalid value
-  //   hotelNameInput.dispatchEvent(new Event('input'));
+    // Mock valid form inputs
+    component.contract = {
+      hotelName: 'Hotel Test',
+      validFrom: '2024-01-01',
+      validTo: '2024-12-31',
+      markupRate: 10,
+      roomTypeList: [
+        { typeName: 'Deluxe', maxNoOfAdults: 2, noOfRooms: 1, perPersonPrice: 100 },
+      ],
+    };
   
-  //   fixture.detectChanges();
-  //   expect(hotelNameInput.classList).toContain('ng-invalid'); // Check for invalid class
-  // });
+    fixture.detectChanges();
+    const submitButton = compiled.querySelector('button[type="submit"]') as HTMLButtonElement;
+  
+    expect(submitButton.disabled).toBeFalse(); // Submit button should be enabled
+  });
 
-  // it('should mark markupRate as invalid if less than 0', () => {
-  //   const fixture = TestBed.createComponent(AddContractComponent);
-  //   const component = fixture.componentInstance;
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  
-  //   const markupRateInput = compiled.querySelector('input[name="markupRate"]') as HTMLInputElement;
-  //   markupRateInput.value = '-1'; // Invalid value
-  //   markupRateInput.dispatchEvent(new Event('input'));
-  
-  //   fixture.detectChanges();
-  //   expect(markupRateInput.classList).toContain('ng-invalid'); // Check for invalid class
-  // });
 
-  // it('should enable the submit button if form is valid', () => {
+  // it('should mark validFrom as invalid if in the past', async () => {
   //   const fixture = TestBed.createComponent(AddContractComponent);
   //   const component = fixture.componentInstance;
   //   const compiled = fixture.nativeElement as HTMLElement;
   
-  //   // Mock valid form inputs
-  //   component.contract = {
-  //     hotelName: 'Hotel Test',
-  //     validFrom: '2024-01-01',
-  //     validTo: '2024-12-31',
-  //     markupRate: 10,
-  //     roomTypeList: [
-  //       { typeName: 'Deluxe', maxNoOfAdults: 2, noOfRooms: 1, perPersonPrice: 100 },
-  //     ],
-  //   };
-  
-  //   fixture.detectChanges();
-  //   const submitButton = compiled.querySelector('button[type="submit"]') as HTMLButtonElement;
-  
-  //   expect(submitButton.disabled).toBeFalse(); // Submit button should be enabled
-  // });
-
-  // it('should log an error if addContract fails', () => {
-  //   const fixture = TestBed.createComponent(AddContractComponent);
-  //   const component = fixture.componentInstance;
-  //   const consoleSpy = spyOn(console, 'error');
-  
-  //   contractsServiceSpy.addContract.and.returnValue(throwError(() => new Error('Service error')));
-    
-  //   component.contract.roomTypeList.push({
-  //     typeName: 'Deluxe',
-  //     maxNoOfAdults: 2,
-  //     noOfRooms: 1,
-  //     perPersonPrice: 100,
-  //   });
-  //   component.onSubmit();
-  
-  //   expect(consoleSpy).toHaveBeenCalledWith('Failed to add contract:', jasmine.any(Error));
-  // });
-  
-  // it('should mark validFrom as invalid if in the past', () => {
-  //   const fixture = TestBed.createComponent(AddContractComponent);
-  //   const component = fixture.componentInstance;
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  
+  //   // Arrange: Set a past date for validFrom
   //   const validFromInput = compiled.querySelector('input[name="validFrom"]') as HTMLInputElement;
   //   validFromInput.value = '2023-01-01'; // Past date
-  //   validFromInput.dispatchEvent(new Event('input'));
+  //   validFromInput.dispatchEvent(new Event('input')); // Simulate user input
+  //   fixture.detectChanges(); // Update DOM
   
-  //   fixture.detectChanges();
+  //   // Act: Trigger Angular's change detection
+  //   await fixture.whenStable();
+  
+  //   // Assert: Check if the ng-invalid class is applied
   //   expect(validFromInput.classList).toContain('ng-invalid');
+  
+  //   // Assert: Check for the error message
+  //   const errorMessage = compiled.querySelector('#valid-form .error p') as HTMLElement;
+  //   expect(errorMessage.textContent).toContain('Valid From cannot be a past date.');
   // });
+  
   
   // it('should mark validTo as invalid if before validFrom', () => {
   //   const fixture = TestBed.createComponent(AddContractComponent);
@@ -172,8 +139,5 @@ describe('AddContractComponent', () => {
   //   fixture.detectChanges();
   //   expect(validToInput.classList).toContain('ng-invalid');
   // });
-  
-  
-  
   
 });

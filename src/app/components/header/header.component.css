@@ -75,18 +75,26 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .header {
+    display: flex;
       flex-direction: column; /* Stack items vertically */
-      align-items: flex-start;
+   
   }
 
   .header-title {
       margin-bottom: 1rem; /* Add spacing below title */
-      text-align: center;
+      justify-self:center;
+      font-size: small;
+      align-items: flex-start;
+      justify-content: center;
   }
 
   .header-right {
       width: 100%; /* Full width for smaller screens */
       justify-content: space-between; /* Spread buttons and logo */
+  }
+
+  .header-left{
+    text-align: center;
   }
 
   .header-right .btn-home,

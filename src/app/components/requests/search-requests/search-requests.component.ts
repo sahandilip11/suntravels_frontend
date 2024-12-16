@@ -38,6 +38,17 @@ export class SearchRequestsComponent {
     );
   }
 
+  isRoomSearchValid(): boolean {
+    return (
+      this.searchRequest.checkInDate.trim() !== '' &&
+      this.searchRequest.numberOfNights > 0 &&
+      this.searchRequest.roomRequests.every(
+        (room) => room.numberOfAdults > 0 && room.numberOfRooms > 0
+      )
+    );
+  }
+  
+
 
   
 

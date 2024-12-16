@@ -4,6 +4,7 @@
   grid-template-columns: repeat(3, 1fr); /* Always three columns */
   gap: 1.5rem; /* Space between cards */
   padding: 1rem; /* Add padding around the container */
+  justify-content: center;
 }
 
 /* Card styling */
@@ -76,7 +77,7 @@
 @media (max-width: 1024px) {
   .button-container {
     grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
-    gap: 1.5rem; /* Adjust spacing */
+    gap: 1rem; /* Adjust spacing */
   }
 }
 
@@ -84,9 +85,10 @@
   .button-container {
     grid-template-columns: 1fr; /* Single column layout for smaller screens */
     gap: 1rem; /* Adjust spacing */
+
   }
 
   .card {
-    width: 100%; /* Full width on small screens */
+    min-width: 60%; /* Full width on small screens */
   }
 }

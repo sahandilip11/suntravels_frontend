@@ -89,7 +89,7 @@
           </button>
         </div>
         <div class="submit-div">
-          <button type="submit">Search</button>
+          <button type="submit" [disabled]="!isRoomSearchValid()">Search</button>
         </div>
       </div>
     </div>

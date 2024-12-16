@@ -227,3 +227,76 @@
   color: #333;
   font-family: cursive;
 }
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  /* Adjust page title for smaller screens */
+  .page-title {
+    font-size: 2rem; /* Smaller font size for mobile */
+    text-align: center; /* Center align title for better appearance */
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  /* Adjust card container to show one card per row */
+  .card-container {
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 15px; /* Reduce spacing between cards */
+  }
+
+  /* Reduce padding and font sizes for card details */
+  .card-details {
+    flex-direction: column; /* Stack details vertically */
+    gap: 5px;
+    margin-bottom: 15px;
+  }
+
+  .card-details p {
+    font-size: 0.9rem; /* Smaller font size */
+  }
+
+  /* Adjust card padding for smaller screens */
+  .contract-card {
+    padding: 15px;
+  }
+
+  /* Adjust room types table for better mobile readability */
+  .room-types-table {
+    font-size: 0.9rem; /* Reduce table font size */
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .room-types-table th,
+  .room-types-table td {
+    padding: 8px;
+  }
+
+  /* Adjust top container layout */
+  .top-container {
+    flex-direction: column; /* Stack title and search dropdown */
+    gap: 15px; /* Add spacing between elements */
+    width: 100%;
+    max-width: 80vw;
+  }
+
+  /* Adjust search dropdown */
+  .search-dropdown {
+    font-size: 0.9rem; /* Reduce font size */
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+
+  /* Adjust buttons for mobile */
+  .edit-button,
+  .delete-button {
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 6px 10px; /* Adjust padding for buttons */
+  }
+
+  /* Adjust card actions layout */
+  .card-actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add spacing between buttons */
+  }
+}
+

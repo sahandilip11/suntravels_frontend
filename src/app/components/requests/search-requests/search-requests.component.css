@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-self: center;
   font-family: cursive;
 }
 
@@ -28,6 +28,7 @@
   margin: 10px;
   background: linear-gradient(135deg, rgba(210, 224, 255, 0.8), rgba(187, 210, 213, 0.8));
   font-family: cursive;
+  max-width: 90vw;
 }
 
 .input-div {
@@ -82,6 +83,7 @@
   margin-bottom: 20px;
   margin-top: 10px;
   font-family: cursive;
+  
 }
 
 .room-inputs label {
@@ -199,7 +201,7 @@
 /* Results wrapper */
 .results-wrapper {
   margin: 20px auto;
-  width: 90%;
+  max-width: 90vw;
   font-family: cursive;
 }
 
@@ -213,7 +215,7 @@
 
 /* Outer table styling */
 .results-table {
-  width: 100%;
+  width: 90vw;
   border-collapse: collapse;
   margin-top: 15px;
   font-family: cursive;
@@ -268,4 +270,115 @@
   font-size: 0.9rem;
   color: #555;
   font-family: cursive;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  /* Form wrapper */
+  .form-wrapper {
+    padding: 10px;
+    max-width: 70vw;
+  }
+
+  /* Form container */
+  .form-container {
+    max-width: 70vw; /* Use full width */
+    padding: 20px; /* Reduce padding */
+    box-shadow: none; /* Simplify the shadow for mobile */
+    border: none; /* Remove border for cleaner look */
+  }
+
+  /* Input fields */
+  .input-div {
+    flex-direction: column; /* Stack label and input */
+    align-items: flex-start;
+  }
+
+  .input-div label {
+    margin-bottom: 5px; /* Add spacing below label */
+    flex: unset; /* Remove flex layout for label */
+  }
+
+  .input-div input {
+    width: 100%; /* Full width input fields */
+  }
+
+  /* Room block */
+  .room-block {
+    padding: 15px; /* Adjust padding */
+  }
+
+  .room-inputs {
+    flex-direction: column; /* Stack inputs vertically */
+    gap: 10px;
+  }
+
+  .room-inputs input {
+    width: 90%; /* Full width input fields */
+  }
+
+  /* Buttons */
+  .buttons-div {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch; /* Full-width buttons */
+    gap: 10px;
+  }
+
+  .add-room-button,
+  .submit-div button {
+    width: 100%; /* Full width buttons */
+  }
+
+  /* Results wrapper */
+  .results-wrapper {
+    width: 100%; /* Full width results */
+    padding: 8px;
+  }
+
+  /* Results table */
+  .results-table {
+    font-size: 0.5rem; /* Reduce font size */
+    max-width: 90vw;
+  }
+
+  .results-table thead th,
+  .results-table tbody td {
+    padding: 2px; /* Reduce padding for smaller screens */
+    font-size: 0.5rem
+
+  }
+
+  /* Inner table */
+  .inner-table {
+    font-size: 0.5rem; /* Reduce font size */
+  }
+
+  /* Adjust room number topic */
+  .room-number-topic {
+    font-size: 1rem; /* Smaller font size */
+    margin-bottom: 5px; /* Adjust margin */
+  }
+
+  /* Title */
+  .form-title {
+    font-size: 1.5rem; /* Adjust font size */
+    margin-bottom: 15px; /* Adjust margin */
+  }
+
+  /* Results title */
+  .results-title {
+    font-size: 1.5rem; /* Adjust font size */
+  }
+
+  /* Loading and error states */
+  .loading-state,
+  .error {
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  /* Buttons */
+  .btn-cancel {
+    width: 100%; /* Full width for cancel button */
+    margin-top: 10px; /* Add spacing */
+  }
 }

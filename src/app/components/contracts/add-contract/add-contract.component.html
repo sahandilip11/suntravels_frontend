@@ -35,7 +35,7 @@
           />
           <div class="error" *ngIf="markupRate.invalid && markupRate.touched">
             <p *ngIf="markupRate.errors?.['required']">Markup Rate is required.</p>
-            <p *ngIf="markupRate.errors?.['min']">Markup Rate can't be zero.</p>
+            <p *ngIf="markupRate.errors?.['min']">Markup Rate must be positive Integer.</p>
           </div>
         </div>
 

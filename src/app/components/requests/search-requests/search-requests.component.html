@@ -1,152 +1,155 @@
-<div class="form-wrapper">
-  <h1 class="form-title">Search Form</h1>
-
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-container">
-      <!-- Check-in Date Input -->
-  <!-- Check-in Date Input -->
-      <div class="input-div">
-        <label>Check-in Date:</label>
-        <input
-          type="date"
-          [(ngModel)]="searchRequest.checkInDate"
-          name="checkInDate"
-          required
-          [min]="today" 
-        />
-      </div>
-
-      <div class="input-div">
-        <label>Number of Nights:</label>
-        <input
-          type="number"
-          [(ngModel)]="searchRequest.numberOfNights"
-          name="numberOfNights"
-          required
-          min="1" 
-          #numberOfNights="ngModel"
-        />
-        <div class="error" *ngIf="numberOfNights.invalid && numberOfNights.touched">
-          <p *ngIf="numberOfNights.errors?.['required']">Number of Nights is required.</p>
-          <p *ngIf="numberOfNights.errors?.['min']">Number of Nights must be 1 or greater.</p>
-        </div>
-      </div>
-      
-
-<!-- Room Requests -->
-<div class="room-block" *ngFor="let room of searchRequest.roomRequests; let i = index">
-  <h3 class="room-number-topic">Room Request {{ i + 1 }}</h3>
-  <div class="room-inputs">
-    <div class="single-room-input">
-      <label>Number of Adults:</label>
-      <input
-        class="room-input"
-        type="number"
-        [(ngModel)]="room.numberOfAdults"
-        name="numberOfAdults-{{ i }}"
-        required
-        min="1"
-        #numberOfAdults="ngModel" 
-      />
-      <div class="error-message" *ngIf="numberOfAdults.invalid && numberOfAdults.touched">
-        <p *ngIf="numberOfAdults.errors?.['required']">Number of Adults is required.</p>
-        <p *ngIf="numberOfAdults.errors?.['min']">Must be at least 1 adult.</p>
-      </div>
-    </div>
-    <div class="single-room-input">
-      <label>Number of Rooms:</label>
-      <input
-        class="room-input"
-        type="number"
-        [(ngModel)]="room.numberOfRooms"
-        name="numberOfRooms-{{ i }}"
-        required
-        min="1"
-        #numberOfRooms="ngModel" 
-      />
-      <div class="error-message" *ngIf="numberOfRooms.invalid && numberOfRooms.touched">
-        <p *ngIf="numberOfRooms.errors?.['required']">Number of Rooms is required.</p>
-        <p *ngIf="numberOfRooms.errors?.['min']">Must be at least 1 room.</p>
-      </div>
-    </div>
-  </div>
-  <div class="btn-cancel-div">
-    <button (click)="removeRoomRequest(i)" class="btn-cancel">Cancel</button>
-  </div>
-</div>
-
-
-      <!-- Buttons -->
-      <div class="buttons-div">
-        <div class="add-room-div">
-          <button
-            class="add-room-button"
-            (click)="addRoomRequest()"
-            type="button"
-            [disabled]="!isRoomRequestValid()" 
-          >
-            Add Room Request
-          </button>
-        </div>
-        <div class="submit-div">
-          <button type="submit" [disabled]="!isRoomSearchValid()">Search</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-
-<!-- Loading State -->
-<div *ngIf="isLoading" class="loading-state">Loading search results...</div>
-
-<!-- Error Message -->
-<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-
-<!-- Search Results -->
-<div *ngIf="!isLoading && filteredResults.length" class="results-wrapper">
-  <h2 class="results-title">Search Results</h2>
+<div class="outer-container">
+  <div class="form-wrapper">
+    <h1 class="form-title">Search Form</h1>
   
-  <table class="results-table">
-    <thead>
-      <tr>
-        <th>Hotel Name</th>
-        <th>Status</th>
-        <th>Total Price($)</th>
-        <th>Room Types</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Use filteredResults instead of searchResults -->
-      <tr *ngFor="let result of filteredResults">
-        <td>{{ result.hotelName }}</td>
-        <td>{{ result.availabilityStatus }}</td>
-        <td>{{ result.price }}</td>
-        <td>
-          <table *ngIf="result.roomType?.length" class="inner-table">
-            <thead>
-              <tr>
-                <th>Type Name</th>
-                <th>Max Adults</th>
-                <th>Price Per Person</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let room of result.roomType">
-                <td>{{ room.typeName }}</td>
-                <td>{{ room.maxNoAdults }}</td>
-                <td>{{ room.perPersonPrice }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <p *ngIf="!result.roomType || !result.roomType.length">No rooms available.</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-container">
+        <!-- Check-in Date Input -->
+    <!-- Check-in Date Input -->
+        <div class="input-div">
+          <label>Check-in Date:</label>
+          <input
+            type="date"
+            [(ngModel)]="searchRequest.checkInDate"
+            name="checkInDate"
+            required
+            [min]="today" 
+          />
+        </div>
+  
+        <div class="input-div">
+          <label>Number of Nights:</label>
+          <input
+            type="number"
+            [(ngModel)]="searchRequest.numberOfNights"
+            name="numberOfNights"
+            required
+            min="1" 
+            #numberOfNights="ngModel"
+          />
+          <div class="error" *ngIf="numberOfNights.invalid && numberOfNights.touched">
+            <p *ngIf="numberOfNights.errors?.['required']">Number of Nights is required.</p>
+            <p *ngIf="numberOfNights.errors?.['min']">Number of Nights must be 1 or greater.</p>
+          </div>
+        </div>
+        
+  
+  <!-- Room Requests -->
+  <div class="room-block" *ngFor="let room of searchRequest.roomRequests; let i = index">
+    <h3 class="room-number-topic">Room Request {{ i + 1 }}</h3>
+    <div class="room-inputs">
+      <div class="single-room-input">
+        <label>Number of Adults:</label>
+        <input
+          class="room-input"
+          type="number"
+          [(ngModel)]="room.numberOfAdults"
+          name="numberOfAdults-{{ i }}"
+          required
+          min="1"
+          #numberOfAdults="ngModel" 
+        />
+        <div class="error-message" *ngIf="numberOfAdults.invalid && numberOfAdults.touched">
+          <p *ngIf="numberOfAdults.errors?.['required']">Number of Adults is required.</p>
+          <p *ngIf="numberOfAdults.errors?.['min']">Must be at least 1 adult.</p>
+        </div>
+      </div>
+      <div class="single-room-input">
+        <label>Number of Rooms:</label>
+        <input
+          class="room-input"
+          type="number"
+          [(ngModel)]="room.numberOfRooms"
+          name="numberOfRooms-{{ i }}"
+          required
+          min="1"
+          #numberOfRooms="ngModel" 
+        />
+        <div class="error-message" *ngIf="numberOfRooms.invalid && numberOfRooms.touched">
+          <p *ngIf="numberOfRooms.errors?.['required']">Number of Rooms is required.</p>
+          <p *ngIf="numberOfRooms.errors?.['min']">Must be at least 1 room.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-cancel-div">
+      <button (click)="removeRoomRequest(i)" class="btn-cancel">Cancel</button>
+    </div>
+  </div>
+  
+  
+        <!-- Buttons -->
+        <div class="buttons-div">
+          <div class="add-room-div">
+            <button
+              class="add-room-button"
+              (click)="addRoomRequest()"
+              type="button"
+              [disabled]="!isRoomRequestValid()" 
+            >
+              Add Room Request
+            </button>
+          </div>
+          <div class="submit-div">
+            <button type="submit" [disabled]="!isRoomSearchValid()">Search</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">Loading search results...</div>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  
+  <!-- Search Results -->
+  <div *ngIf="!isLoading && filteredResults.length" class="results-wrapper">
+    <h2 class="results-title">Search Results</h2>
+    
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Hotel Name</th>
+          <th>Status</th>
+          <th>Total Price($)</th>
+          <th>Room Types</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Use filteredResults instead of searchResults -->
+        <tr *ngFor="let result of filteredResults">
+          <td>{{ result.hotelName }}</td>
+          <td>{{ result.availabilityStatus }}</td>
+          <td>{{ result.price }}</td>
+          <td>
+            <table *ngIf="result.roomType?.length" class="inner-table">
+              <thead>
+                <tr>
+                  <th>Type Name</th>
+                  <th>Max Adults</th>
+                  <th>Price Per Person</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let room of result.roomType">
+                  <td>{{ room.typeName }}</td>
+                  <td>{{ room.maxNoAdults }}</td>
+                  <td>{{ room.perPersonPrice }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p *ngIf="!result.roomType || !result.roomType.length">No rooms available.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">Loading search results...</div>
+  
 </div>
-
-<!-- Error Message -->
-<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-
-<!-- Loading State -->
-<div *ngIf="isLoading" class="loading-state">Loading search results...</div>

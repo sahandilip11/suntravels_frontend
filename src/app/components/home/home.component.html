@@ -1,16 +1,18 @@
-
-<div class="button-container">
-  <div class="card" (click)="navigateTo('/contracts/add')">
-    <h3>Add Contract</h3>
-    <p>Add new contract to the System</p>
+<div class="outer-container">
+  <div class="button-container">
+    <div class="card" (click)="navigateTo('/contracts/add')">
+      <h3>Add Contract</h3>
+      <p>Add new contract to the System</p>
+    </div>
+    <div class="card" (click)="navigateTo('/requests/search')">
+      <h3>Search Request</h3>
+      <p>Search for a incoming request</p>
+    </div>
+    <div class="card" (click)="navigateTo('/contracts/view')">
+      <h3>View Contracts</h3>
+      <p>View all existing contracts</p>
+    </div>
   </div>
-  <div class="card" (click)="navigateTo('/requests/search')">
-    <h3>Search Request</h3>
-    <p>Search for a incoming request</p>
-  </div>
-  <div class="card" (click)="navigateTo('/contracts/view')">
-    <h3>View Contracts</h3>
-    <p>View all existing contracts</p>
-  </div>
+  
 </div>
 

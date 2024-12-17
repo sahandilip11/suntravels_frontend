@@ -228,6 +228,12 @@
   font-family: cursive;
 }
 
+.outer-container{
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(134, 155, 194, 0.8));
+  min-width:fit-content;
+  min-height:85vh;
+}
+
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
   /* Adjust page title for smaller screens */

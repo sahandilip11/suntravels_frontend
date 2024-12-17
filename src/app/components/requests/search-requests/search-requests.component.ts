@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RequestsService, SearchResult } from '../../../services/requests.service';
+import { Console } from 'node:console';
 
 @Component({
   selector: 'app-search-requests',
@@ -42,6 +43,7 @@ export class SearchRequestsComponent {
     return (
       this.searchRequest.checkInDate.trim() !== '' &&
       this.searchRequest.numberOfNights > 0 &&
+      this.searchRequest.roomRequests.length > 0 &&
       this.searchRequest.roomRequests.every(
         (room) => room.numberOfAdults > 0 && room.numberOfRooms > 0
       )

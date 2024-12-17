@@ -1,60 +1,63 @@
-<div class="top-container">
-  <h1 class="page-title">View Contracts</h1>
-  <div class="search-container">
-    <label for="hotelSelect" class="search-label">Select Hotel:</label>
-    <select id="hotelSelect" class="search-dropdown" [(ngModel)]="selectedHotel" (change)="filterContracts()">
-      <option value="">All Hotels</option>
-      <option *ngFor="let hotel of hotelNames" [value]="hotel">{{ hotel }}</option>
-    </select>
+<div class="outer-container">
+  <div class="top-container">
+    <h1 class="page-title">View Contracts</h1>
+    <div class="search-container">
+      <label for="hotelSelect" class="search-label">Select Hotel:</label>
+      <select id="hotelSelect" class="search-dropdown" [(ngModel)]="selectedHotel" (change)="filterContracts()">
+        <option value="">All Hotels</option>
+        <option *ngFor="let hotel of hotelNames" [value]="hotel">{{ hotel }}</option>
+      </select>
+    </div>
   </div>
+  
+  
+  
+  <div class="card-container" *ngIf="filteredContracts.length > 0; else noContracts">
+    <div
+      *ngFor="let contract of filteredContracts"
+      class="contract-card"
+      [ngClass]="getCardClass(contract.validFrom, contract.validTo)"
+    >
+      <div class="card-header">
+        <h2 class="hotel-name">{{ contract.hotelName }}</h2>
+      </div>
+      <div class="card-details">
+        <p><strong>Valid From:</strong> {{ contract.validFrom }}</p>
+        <p><strong>Valid To:</strong> {{ contract.validTo }}</p>
+        <p><strong>Markup Rate:</strong> {{ contract.markupRate }}</p>
+      </div>
+      <div class="room-types">
+        <h3>Available Room Types</h3>
+        <table class="room-types-table">
+          <thead>
+            <tr>
+              <th>Type Name</th>
+              <th>Max Adults</th>
+              <th>No of Rooms</th>
+              <th>Price Per Person</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of contract.roomTypeList">
+              <td>{{ room.typeName }}</td>
+              <td>{{ room.maxNoOfAdults }}</td>
+              <td>{{ room.noOfRooms }}</td>
+              <td>${{ room.perPersonPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-actions">
+        <button class="edit-button" (click)="onEdit(contract.contractId)">Edit</button>
+        <button class="delete-button" (click)="onDelete(contract.contractId)">Delete</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noContracts>
+    <div class="no-contracts-message">
+      <p>No contracts found for the selected hotel.</p>
+    </div>
+  </ng-template>  
 </div>
 
-
-
-<div class="card-container" *ngIf="filteredContracts.length > 0; else noContracts">
-  <div
-    *ngFor="let contract of filteredContracts"
-    class="contract-card"
-    [ngClass]="getCardClass(contract.validFrom, contract.validTo)"
-  >
-    <div class="card-header">
-      <h2 class="hotel-name">{{ contract.hotelName }}</h2>
-    </div>
-    <div class="card-details">
-      <p><strong>Valid From:</strong> {{ contract.validFrom }}</p>
-      <p><strong>Valid To:</strong> {{ contract.validTo }}</p>
-      <p><strong>Markup Rate:</strong> {{ contract.markupRate }}</p>
-    </div>
-    <div class="room-types">
-      <h3>Available Room Types</h3>
-      <table class="room-types-table">
-        <thead>
-          <tr>
-            <th>Type Name</th>
-            <th>Max Adults</th>
-            <th>No of Rooms</th>
-            <th>Price Per Person</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let room of contract.roomTypeList">
-            <td>{{ room.typeName }}</td>
-            <td>{{ room.maxNoOfAdults }}</td>
-            <td>{{ room.noOfRooms }}</td>
-            <td>${{ room.perPersonPrice }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-actions">
-      <button class="edit-button" (click)="onEdit(contract.contractId)">Edit</button>
-      <button class="delete-button" (click)="onDelete(contract.contractId)">Delete</button>
-    </div>
-  </div>
-</div>
-
-<ng-template #noContracts>
-  <div class="no-contracts-message">
-    <p>No contracts found for the selected hotel.</p>
-  </div>
-</ng-template>

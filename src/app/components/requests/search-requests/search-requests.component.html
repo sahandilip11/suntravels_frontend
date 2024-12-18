@@ -14,7 +14,12 @@
             name="checkInDate"
             required
             [min]="today" 
+            #checkInDate="ngModel"
           />
+          <div class="error" *ngIf="checkInDate.invalid && checkInDate.touched">
+            <p *ngIf="checkInDate.errors?.['required']">Check-in date is required.</p>
+            <p *ngIf="checkInDate.errors?.['min']">Check-in date must be a future date.</p>
+          </div>          
         </div>
   
         <div class="input-div">

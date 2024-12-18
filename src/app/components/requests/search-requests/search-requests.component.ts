@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RequestsService, SearchResult } from '../../../services/requests.service';
-import { Console } from 'node:console';
 
 @Component({
   selector: 'app-search-requests',
@@ -84,7 +83,12 @@ export class SearchRequestsComponent {
       alert('Please fill in all required fields: Check-in Date and Number of Nights.');
       return;
     }
-  
+
+    if( this.searchRequest.checkInDate < this.today ){
+      alert('Add upcoming Date as Checking Date')
+      return
+    }
+   
     // Validate roomRequests
     for (let i = 0; i < roomRequests.length; i++) {
       const room = roomRequests[i];

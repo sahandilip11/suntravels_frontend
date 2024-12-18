@@ -219,6 +219,8 @@
   border-collapse: collapse;
   margin-top: 15px;
   font-family: cursive;
+  border-color: black;
+  border-radius: 4px;
 }
 
 .results-table thead th {
@@ -226,20 +228,26 @@
   color: white;
   padding: 10px;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   font-family: cursive;
 }
 
 .results-table tbody td {
   padding: 8px 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   font-size: 1rem;
   color: #333;
   font-family: cursive;
+  border-radius: 5px;
 }
 
 .results-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
+  font-family: cursive;
+}
+
+.results-table tbody tr:nth-child(odd) {
+  background-color: #d9e3fa;
   font-family: cursive;
 }
 
@@ -260,13 +268,13 @@
   color: #3e54fd;
   padding: 5px;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   font-family: cursive;
 }
 
 .inner-table tbody td {
   padding: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   font-size: 0.9rem;
   color: #555;
   font-family: cursive;
